@@ -1,27 +1,18 @@
-# CIS580 HW2 
+# Readme 
 
-To run this program:
+The objective of this project was to implement a simple augmented reality application that utilizes AprilTags to recover the camera poses and place virtual objects in a real-world video. AprilTags, which are commonly used in robotics for determining the pose of the camera, were provided in each frame of the video with the 4 corners coordinates (in pixels) and the size of the tags.
 
-```
-cd code
-python main.py
-```
+Two different approaches were used to recover the camera poses: 1) solving the Perspective-N-Point (PnP) problem with coplanar assumption and 2) solving the Persepective-three-point (P3P) and the Procrustes problem.
 
-We also provided some helper flags. Please check `main.py` for details. You can generate your visualizations with either PnP or P3P algorithm, but you still need to implement both of them. Although you are not asked to implement the renderer, you are still encouraged to look through the code of renderer as you may need to renderer your results by yourself next time. 
+The PnP algorithm was implemented by assuming that the AprilTags were coplanar and that the camera was calibrated. The algorithm used the 4 corner coordinates of the AprilTag in the image to compute the extrinsic parameters of the camera.
 
-PS: remember to complete the `est_homography.py` with the function you just wrote for HW1.
+The P3P algorithm was implemented by assuming that the AprilTag was a planar object and that the camera was calibrated. The algorithm used the 3 non-colinear points of the AprilTag in the image to compute the extrinsic parameters of the camera. The Procrustes problem was then solved to obtain the scale, translation and rotation of the object.
 
-## Debugging
+After retrieving the 3D relationship between the camera and world, an arbitrary object was placed in the scene using the computed extrinsic parameters.
 
-It's recommended to run the program with `--debug` when you start to work on this homework since the rendering takes about 2 mins to finish on a PC. 
-
-Also, note that the main program has several other args you can set, please have a look at line 40 in the `main.py` for more details: You can pass `--solver PnP` or `--solver P3P` to the program to toggle between the solving methods.
-
-Note, we also provide the `.vscode` launch configuration for you to easily debug in VSCode.
-
-## Customization
-
-You need to assign different values to  `click_point` in `main.py` to render the drill at different places. 
+The final product was a video that contains several virtual object models as if they existed in the real world. Additionally, the user was able to specify pixel positions to place an arbitrary object.
 
 
 
+![vis](https://user-images.githubusercontent.com/89912646/215112938-085c7af6-54d3-4d47-b9a6-2b8244e2b0b1.png)
+![VR_res](https://user-images.githubusercontent.com/89912646/215115371-73025e9d-916c-4640-8fbe-e9d2263f3355.gif)
