@@ -1,4 +1,4 @@
-# Readme 
+# Description
 
 The objective of this project was to implement a simple augmented reality application that utilizes AprilTags to recover the camera poses and place virtual objects in a real-world video. AprilTags, which are commonly used in robotics for determining the pose of the camera, were provided in each frame of the video with the 4 corners coordinates (in pixels) and the size of the tags.
 
